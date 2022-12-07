@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { api } from '../../api/api';
 import Logo from '../../Logo.png'
 import { Container } from './style';
+import { ListProduct } from './BodyDashBoard';
 
 
 
@@ -39,9 +40,9 @@ export const DashBoard = () => {
 
             
         })
-    });
+    }, []);
 
-    
+    console.log(userLogged)
 
     return (
 
@@ -57,6 +58,8 @@ export const DashBoard = () => {
                 
                 <h3>{userLogged.course_module}</h3>
             </section>
+
+            <ListProduct />
 
         </Container>
 
