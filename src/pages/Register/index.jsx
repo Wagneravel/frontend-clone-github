@@ -32,12 +32,11 @@ const Registrando= ()=> {
     const navegate = useNavigate() 
     const onSubmitFunction = (data) => {
 
-        console.log(data)
 
         api
         .post("/users", data)
         .then((response) => {
-            console.log(response.data)
+            
             setLoading(true)
             toast.success("Cadastro realizado com sucesso")
             setTimeout(()=>{
@@ -45,7 +44,7 @@ const Registrando= ()=> {
             },500)
         })
         .catch((err) => {
-            console.log(err)
+           
             toast.error("Cadastro não permitido")
         })
         .finally(

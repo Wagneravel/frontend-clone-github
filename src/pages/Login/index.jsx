@@ -26,18 +26,17 @@ const Logando = ({setUser}) => {
 
     const navegate = useNavigate()  
     const onSubmitFunction = (data) => {
-        console.log(data)
+        
 
         api
         .post("/sessions", data)
         .then((response) => {
-            console.log(response.data)
+            
             setLoading(true)
             setUser(response.data.user)
             localStorage.setItem("tokenUser" ,response.data.token)
             localStorage.setItem("IdUser",response.data.user.id)
-            localStorage.setItem("Nome",response.data.user.name)
-            localStorage.setItem("Nivel",response.data.user.course_module)
+        
             toast.success("login com sucesso")
             setTimeout(()=>{
                 navegate("/dashboard")
@@ -45,7 +44,7 @@ const Logando = ({setUser}) => {
             
         })
         .catch((err) => {
-            console.log(err)
+            
             toast.error("login não permitido")
         })
         .finally(

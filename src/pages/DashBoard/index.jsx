@@ -9,15 +9,13 @@ import { Container } from './style';
 
 export const DashBoard = () => {
 
-    const[{Nome, setNome}] = useState("")
-    const[{Nivel, setNivel}] = useState("")
+    const [userLogged, setuserLogged]= useState("")
 
     const navegate = useNavigate()  
     const logOut = () =>{
 
-        
-        localStorage.removeItem("IdUser")
-        localStorage.removeItem("tokenUser")
+        localStorage.clear()
+        setuserLogged("")
         navegate("/")
 
     }
@@ -25,10 +23,7 @@ export const DashBoard = () => {
     
     const tokenLS = localStorage.getItem("tokenUser")
     const tokenID = localStorage.getItem("IdUser")
-    const nome = localStorage.getItem("Nome")
-    const nivel = localStorage.getItem("Nivel")
-    console.log(tokenLS)
-    console.log(tokenID)
+ 
 
     useEffect(() => {
     api
@@ -40,14 +35,9 @@ export const DashBoard = () => {
 
         .then((response) => {
 
-            const usuarioLogado =  response.data
+            setuserLogged(response.data)
 
-            console.log(usuarioLogado)
-           
-            let Nome = usuarioLogado.name
-            console.log(Nome)
-            let Nivel = usuarioLogado.course_module
-            console.log(Nivel)
+            
         })
     });
 
@@ -63,9 +53,9 @@ export const DashBoard = () => {
             </header>
 
             <section>
-                <h3>Olá, {nome}</h3>
+                <h3>Olá, {userLogged.name}</h3>
                 
-                <h3>{nivel}</h3>
+                <h3>{userLogged.course_module}</h3>
             </section>
 
         </Container>
