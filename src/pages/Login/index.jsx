@@ -48,7 +48,7 @@ const Logando = ({setUser}) => {
         })
         .catch((err) => {
             
-            toast.error("login não permitido")
+            toast.error("email ou senha incorreta")
         })
         .finally(
             setTimeout(()=>{

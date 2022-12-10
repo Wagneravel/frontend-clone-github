@@ -27,17 +27,6 @@ export const DashBoard = () => {
         
     }
 
-    
-    const logOut = () =>{
-
-        localStorage.clear()
-        setuserLogged("")
-        navegate("/")
-
-    }
-    
-    
-
     useEffect(() => {
         const tokenLS = localStorage.getItem("tokenUser")  
         if(tokenLS){
@@ -67,12 +56,7 @@ export const DashBoard = () => {
 
         <Container>
             
-            <header>
-                <img  src={Logo} alt='logo' />
-                <Link onClick={logOut} to="/" >Sair </Link>
-            </header>
-
-            {/* <HeaderHome /> */}
+             <HeaderHome setuserLogged={setuserLogged}   nome="Sair" /> 
 
             <section>
                 <h3>Olá, {userLogged.name}</h3>

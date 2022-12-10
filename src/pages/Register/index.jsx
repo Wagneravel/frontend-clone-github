@@ -58,7 +58,7 @@ const Registrando= ()=> {
     return(
         <ContainerRegister>
             
-            <HeaderHome />
+            <HeaderHome nome="Voltar" />
 
             <h3>Crie sua conta</h3>
             <p>Rapido e grátis, vamos nessa</p>
