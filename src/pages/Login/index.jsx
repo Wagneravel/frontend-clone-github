@@ -2,7 +2,7 @@ import * as yup from 'yup';
 import { set, useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { api } from '../../api/api';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Container } from './style';
@@ -18,11 +18,11 @@ const Logando = ({setUser}) => {
         email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
         password: yup.string().required("Campo obrigatório"),
         
-      })
+    })
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(formSchema),
-      });
+    });
 
     const navegate = useNavigate()  
     const onSubmitFunction = (data) => {
@@ -39,6 +39,9 @@ const Logando = ({setUser}) => {
         
             toast.success("login com sucesso")
             setTimeout(()=>{
+                // <Link to={{
+                //     pathname: "/dashboard",
+                // }} />
                 navegate("/dashboard")
             },500)
             
@@ -54,11 +57,7 @@ const Logando = ({setUser}) => {
         )
     }  
 
-    const GoRegister= () => {
-        setTimeout(()=>{
-            navegate("/register")
-        },300)
-    }
+    
 
     return(
 
@@ -77,10 +76,11 @@ const Logando = ({setUser}) => {
                 <button type="submit">{Loading? "Logando" : "Entrar"}</button>
             </form>
             <h5>Ainda não possui cadastro?</h5>
-            <button onClick={GoRegister} type='button'>Cadastre-se</button>
+            <Link  to="/register" >Cadastre-se</Link>
         </Container>
     )
 
 }
 
 export default Logando
+

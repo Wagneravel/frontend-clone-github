@@ -7,12 +7,12 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { ContainerRegister } from './style';
 import Logo from '../../Logo.png'
+import { HeaderHome } from '../../componentes/Header';
 
 const Registrando= ()=> {
     const [Loading, setLoading] = useState(false)
 
     const arrSelect = ["Primeiro módulo (Introdução ao Frontend)", "Segundo módulo (Frontend Avançado)", "Terceiro módulo (Introdução ao Backend)", "Quarto módulo (Backend Avançado)"];
-
 
     const formSchema = yup.object().shape({
         email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
@@ -23,15 +23,14 @@ const Registrando= ()=> {
         password: yup.string().required("Campo obrigatório").min(8, "A senha deve ter no minimo 8 caracteres").matches(/\W|_/,"Deve conter um caracter especial").matches(/[\d,]/, "Sua senha deve conter pelo menos 1 numero"),
         passwordConfirm: yup.string().oneOf([yup.ref("password")], "Suas senhas não são iguais")
         
-      })
+    })
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(formSchema),
-      });
+    });
 
     const navegate = useNavigate() 
     const onSubmitFunction = (data) => {
-
 
         api
         .post("/users", data)
@@ -54,19 +53,12 @@ const Registrando= ()=> {
         )
 
     }  
-
-    const GoLogin= ()=>{
-        setTimeout(()=>{
-            navegate("/")
-        },300)
-    }
+    
 
     return(
         <ContainerRegister>
-            <div>
-                <img  src={Logo} alt='logo' />
-                <button onClick={GoLogin} type="button">Voltar</button>
-            </div>
+            
+            <HeaderHome />
 
             <h3>Crie sua conta</h3>
             <p>Rapido e grátis, vamos nessa</p>

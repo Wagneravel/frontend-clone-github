@@ -3,12 +3,13 @@ import styled from "styled-components";
 export const ContainerRegister = styled.div`
 
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     background-color: black;
     color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 30px;
 
     && > p{
         margin: 0;
@@ -16,7 +17,7 @@ export const ContainerRegister = styled.div`
         font-size: smaller;
     }
 
-    && > div{
+    /* && > div{
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -24,7 +25,7 @@ export const ContainerRegister = styled.div`
             height: 40px;
             padding: 20px;
             box-sizing: border-box;
-        }
+        } */
 
     && > form{
         
