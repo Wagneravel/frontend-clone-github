@@ -20,6 +20,7 @@ export const DashBoard = () => {
     const [currentModal, setCurrentModal] = useState(null)
     const [currentModalAtualizar, setCurrentModalAtualizar] = useState(null)
     const [atual, setAtual] = useState('')
+    const [nomeTech, setNomeTech] = useState('')
     
     const tokenID = localStorage.getItem("IdUser")
     
@@ -69,7 +70,7 @@ export const DashBoard = () => {
                 <h5>{userLogged.course_module}</h5>
             </section>
 
-            <ListProduct atual={atual} setAtual={setAtual} setCurrentModalAtualizar={setCurrentModalAtualizar} currentModalAtualizar={currentModalAtualizar} setCurrentModal={setCurrentModal} ModalAtualizarTech={ModalAtualizarTech} setstatus={setstatus} status={status} settechs={settechs} techs={techs} userLogged={userLogged}/>
+            <ListProduct setNomeTech={setNomeTech} nomeTech={nomeTech} atual={atual} setAtual={setAtual} setCurrentModalAtualizar={setCurrentModalAtualizar} currentModalAtualizar={currentModalAtualizar} setCurrentModal={setCurrentModal} ModalAtualizarTech={ModalAtualizarTech} setstatus={setstatus} status={status} settechs={settechs} techs={techs} userLogged={userLogged}/>
 
 
             {/* <ModalVer currentModal={currentModal} setCurrentModal={setCurrentModal} /> */}

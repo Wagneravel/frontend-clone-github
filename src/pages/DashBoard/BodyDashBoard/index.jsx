@@ -4,7 +4,7 @@ import { api } from '../../../api/api';
 import toast from 'react-hot-toast';
 
 
-export function ListProduct({setAtual, atual, setCurrentModalAtualizar, currentModalAtualizar, userLogged, techs, settechs, ModalAtualizarTech, setstatus, status, setCurrentModal}){
+export function ListProduct({setNomeTech, nomeTech, setAtual, atual, setCurrentModalAtualizar, currentModalAtualizar, userLogged, techs, settechs, ModalAtualizarTech, setstatus, status, setCurrentModal}){
     const tokenLS = localStorage.getItem("tokenUser")
     
     
@@ -19,6 +19,7 @@ export function ListProduct({setAtual, atual, setCurrentModalAtualizar, currentM
         setCurrentModalAtualizar(2)
         
         setAtual(e.target.id)
+        setNomeTech(e.target.title)
     }
 
     function deleteTech(e){
@@ -65,7 +66,7 @@ export function ListProduct({setAtual, atual, setCurrentModalAtualizar, currentM
                             <div >
                             
                                 <div>
-                                    <button id={element.id} onClick={openModalAtualizar}>atualizar</button>
+                                    <button id={element.id} title={element.title} onClick={openModalAtualizar}>atualizar</button>
                                     <h3>{element.title}</h3>
                                     <h5>{element.status}</h5>
                                 </div>
@@ -76,7 +77,7 @@ export function ListProduct({setAtual, atual, setCurrentModalAtualizar, currentM
                     }
                     {
                         currentModalAtualizar && (
-                        <ModalAtualizarTech setAtual={setAtual} atual={atual} setCurrentModalAtualizar={setCurrentModalAtualizar} currentModalAtualizar={currentModalAtualizar} settechs={settechs} techs={techs} userLogged={userLogged}  /> 
+                        <ModalAtualizarTech setNomeTech={setNomeTech} nomeTech={nomeTech} setAtual={setAtual} atual={atual} setCurrentModalAtualizar={setCurrentModalAtualizar} currentModalAtualizar={currentModalAtualizar} settechs={settechs} techs={techs} userLogged={userLogged}  /> 
                         )
                     }
                 </DivCardUl>

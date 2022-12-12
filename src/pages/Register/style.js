@@ -10,6 +10,7 @@ export const ContainerRegister = styled.div`
     flex-direction: column;
     align-items: center;
     padding-bottom: 30px;
+    box-sizing: border-box;
 
     && > p{
         margin: 0;

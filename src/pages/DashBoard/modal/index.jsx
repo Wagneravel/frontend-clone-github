@@ -60,7 +60,7 @@ export const ModalShow = ({setuserLogged, userLogged, settechs, techs,setCurrent
                 <button onClick={()=> setCurrentModal(null)}>fechar</button>
                 <div>
                     
-                    <h1>Cadastrar tecnologia</h1>
+                    <h5>Cadastrar tecnologia</h5>
                     <form onSubmit={handleSubmit(onSubmitFunction)}>
                         <input name='title' type="title"  placeholder='insira o nome da tecno' {...register("title")}></input>
                         {errors.title && <p>{errors.title.message}</p>}

@@ -6,9 +6,9 @@ import toast from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { StyleComponentModal, StyleModalBox } from '../modal/style';
 
-export const ModalAtualizarTech = ({setAtual, atual, setCurrentModalAtualizar, settechs, techs, id, setstatus, status}) => {
+export const ModalAtualizarTech = ({setNomeTech, nomeTech, setAtual, atual, setCurrentModalAtualizar, settechs, techs, id, setstatus, status}) => {
     
-    // console.log(atual)
+    // console.log(techs)
     const [Loading, setLoading] = useState(false)
 
     const formSchema = yup.object().shape({
@@ -61,7 +61,8 @@ export const ModalAtualizarTech = ({setAtual, atual, setCurrentModalAtualizar, s
                 <button id={id} onClick={()=> setCurrentModalAtualizar(null)}>fechar</button>
                 <div>
                     
-                    <h1>Atualizar tecnologia</h1>
+                    <h5>Atualizar tecnologia</h5>
+                    <p>{nomeTech}</p>
                     <form onSubmit={handleSubmit(onSubmitFunction)}>
 
                         <select {...register("status")}>
