@@ -9,13 +9,17 @@ import { ModalShow } from './modal';
 import { ModalAtualizarTech } from './modalAtualizarTech';
 import { Link } from 'react-router-dom';
 import { HeaderHome } from '../../componentes/Header';
+import { ModalVer } from '../../componentes/modalVer';
 
 
 export const DashBoard = () => {
     
     const [userLogged, setuserLogged]= useState({})
-    const[techs, settechs] = useState([])
-    const[status, setstatus] = useState("")
+    const [techs, settechs] = useState([])
+    const [status, setstatus] = useState("")
+    const [currentModal, setCurrentModal] = useState(null)
+    const [currentModalAtualizar, setCurrentModalAtualizar] = useState(null)
+    const [atual, setAtual] = useState('')
     
     const tokenID = localStorage.getItem("IdUser")
     
@@ -27,11 +31,12 @@ export const DashBoard = () => {
         
     }
 
+
     useEffect(() => {
         const tokenLS = localStorage.getItem("tokenUser")  
-        if(tokenLS){
-            console.log("tokenLS existe")
-        }else{
+        if(!tokenLS){
+        //     console.log("tokenLS existe")
+        // }else{
             navegate("/")
         }  
     api
@@ -50,7 +55,7 @@ export const DashBoard = () => {
         })
     }, []);
 
-    console.log(userLogged)
+    // console.log(userLogged)
 
     return (
 
@@ -64,12 +69,26 @@ export const DashBoard = () => {
                 <h5>{userLogged.course_module}</h5>
             </section>
 
-            <ListProduct ModalAtualizarTech={ModalAtualizarTech} setstatus={setstatus} status={status} settechs={settechs} techs={techs} userLogged={userLogged}/>
+            <ListProduct atual={atual} setAtual={setAtual} setCurrentModalAtualizar={setCurrentModalAtualizar} currentModalAtualizar={currentModalAtualizar} setCurrentModal={setCurrentModal} ModalAtualizarTech={ModalAtualizarTech} setstatus={setstatus} status={status} settechs={settechs} techs={techs} userLogged={userLogged}/>
 
-            <ModalShow techs={techs} settechs={settechs} userLogged={userLogged} setuserLogged={setuserLogged}/>
 
-            {/* <ModalAtualizarTech settechs={settechs} techs={techs} userLogged={userLogged}/> */}
+            {/* <ModalVer currentModal={currentModal} setCurrentModal={setCurrentModal} /> */}
 
+            {/* <ModalShow setCurrentModal={setCurrentModal} currentModal={currentModal} techs={techs} settechs={settechs} userLogged={userLogged} setuserLogged={setuserLogged}/> */}
+            {
+                currentModal && (
+                    <ModalShow setCurrentModal={setCurrentModal} currentModal={currentModal} techs={techs} settechs={settechs} userLogged={userLogged} setuserLogged={setuserLogged}/>
+                    )
+                    
+                
+            }
+
+            {/* {
+                currentModalAtualizar && (
+                 <ModalAtualizarTech setCurrentModalAtualizar={setCurrentModalAtualizar} currentModalAtualizar={currentModalAtualizar} settechs={settechs} techs={techs} userLogged={userLogged}  id={element.id}/> 
+                )
+
+            } */}
         </Container>
     )
 }

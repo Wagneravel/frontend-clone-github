@@ -4,9 +4,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { api } from '../../../api/api';
 import toast from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
+import { StyleComponentModal, StyleModalBox } from './style';
 
 
-export const ModalShow = ({setuserLogged, userLogged, settechs, techs}) => {
+export const ModalShow = ({setuserLogged, userLogged, settechs, techs,setCurrentModal, currentModal}) => {
 
     const [Loading, setLoading] = useState(false)
 
@@ -23,8 +24,6 @@ export const ModalShow = ({setuserLogged, userLogged, settechs, techs}) => {
     const tokenLS = localStorage.getItem("tokenUser")
     const onSubmitFunction = (data) => {
         
-        console.log(data)
-
         api
         .post("/users/techs", data, {
             
@@ -35,16 +34,16 @@ export const ModalShow = ({setuserLogged, userLogged, settechs, techs}) => {
         
         .then((response) => {
             
-            console.log(response)
+            
             setLoading(true)
             settechs([...techs, data])
             toast.success("tecno add com sucesso")
-
+            setCurrentModal(null)
             
             
         })
         .catch((err) => {
-            console.log(err)
+           
             toast.error("tecno nao add corretamente")
         })
         .finally(
@@ -55,20 +54,28 @@ export const ModalShow = ({setuserLogged, userLogged, settechs, techs}) => {
     } 
 
     return(
-        <div>
-            <h1>Cadastrar tecnologia</h1>
-            <form onSubmit={handleSubmit(onSubmitFunction)}>
-                <input name='title' type="title"  placeholder='insira o nome da tecno' {...register("title")}></input>
-                {errors.title && <p>{errors.title.message}</p>}
+        <StyleComponentModal>
 
-                <select {...register("status")}>
-                    <option>Iniciante</option>
-                    <option>Intermediário</option>
-                    <option>Avançado</option>
-                </select>
-                {errors.status && <p>{errors.status.message}</p>}
-                <button type='submit'>add tecnologia</button>
-            </form>    
-        </div>    
+            <StyleModalBox>
+                <button onClick={()=> setCurrentModal(null)}>fechar</button>
+                <div>
+                    
+                    <h1>Cadastrar tecnologia</h1>
+                    <form onSubmit={handleSubmit(onSubmitFunction)}>
+                        <input name='title' type="title"  placeholder='insira o nome da tecno' {...register("title")}></input>
+                        {errors.title && <p>{errors.title.message}</p>}
+
+                        <select {...register("status")}>
+                            <option>Iniciante</option>
+                            <option>Intermediário</option>
+                            <option>Avançado</option>
+                        </select>
+                        {errors.status && <p>{errors.status.message}</p>}
+                        <button type='submit'>add tecnologia</button>
+                    </form>    
+                </div>    
+            </StyleModalBox>
+
+        </StyleComponentModal>
     )
 }

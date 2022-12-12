@@ -17,16 +17,6 @@ export const ContainerRegister = styled.div`
         font-size: smaller;
     }
 
-    /* && > div{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            height: 40px;
-            padding: 20px;
-            box-sizing: border-box;
-        } */
-
     && > form{
         
         width: 100%;

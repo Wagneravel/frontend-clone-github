@@ -4,10 +4,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { api } from '../../../api/api';
 import toast from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
+import { StyleComponentModal, StyleModalBox } from '../modal/style';
 
-export const ModalAtualizarTech = ({settechs, techs, id, setstatus, status}) => {
-
-    console.log(techs)
+export const ModalAtualizarTech = ({setAtual, atual, setCurrentModalAtualizar, settechs, techs, id, setstatus, status}) => {
+    
+    // console.log(atual)
     const [Loading, setLoading] = useState(false)
 
     const formSchema = yup.object().shape({
@@ -26,7 +27,7 @@ export const ModalAtualizarTech = ({settechs, techs, id, setstatus, status}) => 
         console.log(data)
 
         api
-        .put(`/users/techs/${id}`, data, {
+        .put(`/users/techs/${atual}`, data, {
             
             headers: {
             'Authorization': `Bearer ${tokenLS}`
@@ -34,15 +35,18 @@ export const ModalAtualizarTech = ({settechs, techs, id, setstatus, status}) => 
         
         .then((response) => {
             
-            let newTechsList = techs.filter((ele)=> ele.id !== id)
-
+            let newTechsList = techs.filter((ele)=> ele.id !== response.data.id)
+            
+            
             newTechsList.push(response.data)
 
+            
             settechs(newTechsList)
 
             console.log(response)
             
             toast.success("tecno Atualizada com sucesso")
+            setCurrentModalAtualizar(null)
         })
 
         .catch((err) => {
@@ -52,19 +56,25 @@ export const ModalAtualizarTech = ({settechs, techs, id, setstatus, status}) => 
     } 
 
     return(
-        <div>
-            <h1>Atualizar tecnologia</h1>
-            <form onSubmit={handleSubmit(onSubmitFunction)}>
+        <StyleComponentModal>
+            <StyleModalBox>
+                <button id={id} onClick={()=> setCurrentModalAtualizar(null)}>fechar</button>
+                <div>
+                    
+                    <h1>Atualizar tecnologia</h1>
+                    <form onSubmit={handleSubmit(onSubmitFunction)}>
 
-                <select {...register("status")}>
-                    <option>Iniciante</option>
-                    <option>Intermediário</option>
-                    <option>Avançado</option>
-                </select>
-                {errors.status && <p>{errors.status.message}</p>}
+                        <select {...register("status")}>
+                            <option>Iniciante</option>
+                            <option>Intermediário</option>
+                            <option>Avançado</option>
+                        </select>
+                        {errors.status && <p>{errors.status.message}</p>}
 
-                <button id={id} type='submit'>Salvar Atualizações</button>
-            </form>    
-        </div>    
+                        <button  type='submit'>Salvar Atualizações</button>
+                    </form>    
+                </div>    
+        </StyleModalBox>
+        </StyleComponentModal>
     )
 }

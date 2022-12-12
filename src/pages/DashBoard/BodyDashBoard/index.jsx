@@ -1,19 +1,28 @@
 import { useState } from 'react';
-import { DivHeaderList } from './style';
+import { DivCardLi, DivCardUl, DivHeaderList } from './style';
 import { api } from '../../../api/api';
 import toast from 'react-hot-toast';
 
 
-export function ListProduct({userLogged, techs, settechs, ModalAtualizarTech, setstatus, status}){
+export function ListProduct({setAtual, atual, setCurrentModalAtualizar, currentModalAtualizar, userLogged, techs, settechs, ModalAtualizarTech, setstatus, status, setCurrentModal}){
     const tokenLS = localStorage.getItem("tokenUser")
     
+    
+
+
     function openModal(){
         console.log("Abrir modal")
+        setCurrentModal(1)
+    }
+
+    function openModalAtualizar(e){
+        setCurrentModalAtualizar(2)
         
+        setAtual(e.target.id)
     }
 
     function deleteTech(e){
-        console.log(e.target.id)
+        
         const tech_id = e.target.id
 
         api
@@ -49,25 +58,31 @@ export function ListProduct({userLogged, techs, settechs, ModalAtualizarTech, se
                     <h1>Tecnologias</h1>
                     <button onClick={openModal} type="button"> + </button>
                 </DivHeaderList>
-                <ul>
+                <DivCardUl>
+                    { techs?.map((element, id, index) => (
                     
-               { techs?.map((element, id) => (
-                
-                    <li key={element.id}>
-                        <div >
-                            <div>
-                                <h3>{element.title}</h3>
-                                <h5>{element.status}</h5>
+                        <DivCardLi key={element.id}  >
+                            <div >
+                            
+                                <div>
+                                    <button id={element.id} onClick={openModalAtualizar}>atualizar</button>
+                                    <h3>{element.title}</h3>
+                                    <h5>{element.status}</h5>
+                                </div>
+                                <button id={element.id} onClick={deleteTech} type='button'>deletar</button>
                             </div>
-                            <button id={element.id} onClick={deleteTech} type='button'>deletar</button>
-                        </div>
-                        <ModalAtualizarTech setstatus={setstatus} status={status} settechs={settechs} techs={techs} id={element.id}/>
-                    </li>
-                ))
-                }
-                </ul>
+                        </DivCardLi>
+                        ))
+                    }
+                    {
+                        currentModalAtualizar && (
+                        <ModalAtualizarTech setAtual={setAtual} atual={atual} setCurrentModalAtualizar={setCurrentModalAtualizar} currentModalAtualizar={currentModalAtualizar} settechs={settechs} techs={techs} userLogged={userLogged}  /> 
+                        )
+                    }
+                </DivCardUl>
             </div>
         </div>
     )
-
 }
+
+// id={element.id}
