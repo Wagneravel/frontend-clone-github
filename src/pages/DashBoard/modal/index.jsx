@@ -9,6 +9,8 @@ import { StyleComponentModal, StyleModalBox } from './style';
 
 export const ModalShow = ({setuserLogged, userLogged, settechs, techs,setCurrentModal, currentModal}) => {
 
+    
+
     const [Loading, setLoading] = useState(false)
 
     const formSchema = yup.object().shape({

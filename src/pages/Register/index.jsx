@@ -3,56 +3,60 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { api } from '../../api/api';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { ContainerRegister } from './style';
 import Logo from '../../Logo.png';
 import { HeaderHome } from '../../componentes/Header';
+import { formSchema } from '../../services/valid/registerSchema';
+import { UserContext } from '../../contexts/UserContext';
 
 const Registrando= ()=> {
-    const [Loading, setLoading] = useState(false);
+
+    const {onSubmitFunction2, oiUser, Loading} = useContext(UserContext)
+    
 
     const arrSelect = ['Primeiro módulo (Introdução ao Frontend)', 'Segundo módulo (Frontend Avançado)', 'Terceiro módulo (Introdução ao Backend)', 'Quarto módulo (Backend Avançado)'];
 
-    const formSchema = yup.object().shape({
-        email: yup.string().required('E-mail obrigatório').email('E-mail inválido'),
-        name: yup.string().required('Nome obrigatório'),
-        contact: yup.string().required('Contato obrigatório'),
-        bio: yup.string().required('Campo obrigatório'),
-        course_module: yup.string().required('Campo obrigatório'),
-        password: yup.string().required('Campo obrigatório').min(8, 'A senha deve ter no minimo 8 caracteres').matches(/\W|_/,'Deve conter um caracter especial').matches(/[\d,]/, 'Sua senha deve conter pelo menos 1 numero'),
-        passwordConfirm: yup.string().oneOf([yup.ref('password')], 'Suas senhas não são iguais')
+    // const formSchema = yup.object().shape({
+    //     email: yup.string().required('E-mail obrigatório').email('E-mail inválido'),
+    //     name: yup.string().required('Nome obrigatório'),
+    //     contact: yup.string().required('Contato obrigatório'),
+    //     bio: yup.string().required('Campo obrigatório'),
+    //     course_module: yup.string().required('Campo obrigatório'),
+    //     password: yup.string().required('Campo obrigatório').min(8, 'A senha deve ter no minimo 8 caracteres').matches(/\W|_/,'Deve conter um caracter especial').matches(/[\d,]/, 'Sua senha deve conter pelo menos 1 numero'),
+    //     passwordConfirm: yup.string().oneOf([yup.ref('password')], 'Suas senhas não são iguais')
         
-    });
+    // });
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(formSchema),
     });
 
-    const navegate = useNavigate(); 
-    const onSubmitFunction = (data) => {
+    // const navegate = useNavigate(); 
+    // const onSubmitFunction2 = (data) => {
 
-        api
-        .post('/users', data)
-        .then((response) => {
+    //     api
+    //     .post('/users', data)
+    //     .then((response) => {
             
-            setLoading(true);
-            toast.success('Cadastro realizado com sucesso');
-            setTimeout(()=>{
-                navegate('/');
-            },500)
-        })
-        .catch((err) => {
+    //         setLoading(true);
+    //         toast.success('Cadastro realizado com sucesso');
+    //         setTimeout(()=>{
+    //             navegate('/');
+    //         },500)
+    //     })
+    //     .catch((err) => {
            
-            toast.error('Cadastro não permitido');
-        })
-        .finally(
-            setTimeout(()=>{
-                setLoading(false);
-            },800)
-        );
+    //         toast.error('Cadastro não permitido');
+    //     })
+    //     .finally(
+    //         setTimeout(()=>{
+    //             setLoading(false);
+    //         },800)
+    //     );
 
-    }; 
+    // }; 
     
 
     return(
@@ -63,7 +67,7 @@ const Registrando= ()=> {
             <h3>Crie sua conta</h3>
             <p>Rapido e grátis, vamos nessa</p>
             
-            <form className='form' onSubmit={handleSubmit(onSubmitFunction)} >
+            <form className='form' onSubmit={handleSubmit(onSubmitFunction2)} >
                 <p>Nome</p>
                 <input type='text' placeholder='Nome' {...register('name')}  />
                 {errors.name && <p>{errors.name.message}</p>}

@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../api/api';
 import Logo from '../../Logo.png'
@@ -10,6 +10,8 @@ import { ModalAtualizarTech } from './modalAtualizarTech';
 import { Link } from 'react-router-dom';
 import { HeaderHome } from '../../componentes/Header';
 import { ModalVer } from '../../componentes/modalVer';
+import { UserContext } from '../../contexts/UserContext';
+import { TechContext } from '../../contexts/TechContext';
 
 
 export const DashBoard = () => {
@@ -22,6 +24,9 @@ export const DashBoard = () => {
     const [atual, setAtual] = useState('')
     const [nomeTech, setNomeTech] = useState('')
     
+    const {oiTechs} = useContext(TechContext)
+    const {oiUser} = useContext(UserContext)
+
     const tokenID = localStorage.getItem("IdUser")
     
 
@@ -56,7 +61,8 @@ export const DashBoard = () => {
         })
     }, []);
 
-    // console.log(userLogged)
+    oiTechs('testando o context')
+    oiUser('testando o context')
 
     return (
 

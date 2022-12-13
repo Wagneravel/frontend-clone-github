@@ -1,59 +1,61 @@
-import * as yup from 'yup';
 import { set, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { api } from '../../api/api';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import toast from 'react-hot-toast';
+import { useContext, useState } from 'react';
 import { Container } from './style';
 import Logo from '../../Logo.png';
+import { UserContext } from '../../contexts/UserContext';
+import { formSchema } from '../../services/valid/loginSchema';
 
 
 
-const Logando = ({setUser}) => {
-    const [Loading, setLoading] = useState(false);
+const Logando = () => {
+    const {onSubmitFunction, oiUser, Loading} = useContext(UserContext)
+    // const [Loading, setLoading] = useState(false);
 
-    const formSchema = yup.object().shape({
+    // const formSchema = yup.object().shape({
 
-        email: yup.string().required('E-mail obrigatório').email('E-mail inválido'),
-        password: yup.string().required('Campo obrigatório'),
+    //     email: yup.string().required('E-mail obrigatório').email('E-mail inválido'),
+    //     password: yup.string().required('Campo obrigatório'),
         
-    });
+    // });
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(formSchema),
     });
 
-    const navegate = useNavigate() ; 
-    const onSubmitFunction = (data) => {
+    // const navegate = useNavigate() ; 
+    // const onSubmitFunction = (data) => {
         
 
-        api
-        .post('/sessions', data)
-        .then((response) => {
+    //     api
+    //     .post('/sessions', data)
+    //     .then((response) => {
             
-            setLoading(true);
-            setUser(response.data.user);
-            localStorage.setItem('tokenUser' ,response.data.token);
-            localStorage.setItem('IdUser',response.data.user.id);
+    //         setLoading(true);
+    //         setUser(response.data.user);
+    //         localStorage.setItem('tokenUser' ,response.data.token);
+    //         localStorage.setItem('IdUser',response.data.user.id);
         
-            toast.success('login com sucesso');
-            setTimeout(()=>{
-                navegate('/dashboard');
-            },500)
+    //         toast.success('login com sucesso');
+    //         setTimeout(()=>{
+    //             navegate('/dashboard');
+    //         },500)
             
-        })
-        .catch((err) => {
+    //     })
+    //     .catch((err) => {
             
-            toast.error('email ou senha incorreta');
-        })
-        .finally(
-            setTimeout(()=>{
-                setLoading(false);
-            },800)
-        )
-    };  
+    //         toast.error('email ou senha incorreta');
+    //     })
+    //     .finally(
+    //         setTimeout(()=>{
+    //             setLoading(false);
+    //         },800)
+    //     )
+    // };  
 
+
+    // oiUser('testando o context');
     
 
     return(
