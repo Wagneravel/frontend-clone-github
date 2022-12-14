@@ -15,9 +15,9 @@ import { TechContext } from '../../contexts/TechContext';
 
 export const DashBoard = () => {
 
-    const {oiTechs, setuserLogged, userLogged, settechs, techs, atual, setAtual, nomeTech, setNomeTech, setstatus, status, setCurrentModal, currentModal, setCurrentModalAtualizar, currentModalAtualizar} = useContext(TechContext)
+    const {setuserLogged, userLogged, settechs, techs, atual, setAtual, nomeTech, setNomeTech, setstatus, status, setCurrentModal, currentModal, setCurrentModalAtualizar, currentModalAtualizar} = useContext(TechContext);
     
-    const {oiUser} = useContext(UserContext)
+   
     
     return (
 

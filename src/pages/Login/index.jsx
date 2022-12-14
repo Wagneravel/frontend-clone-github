@@ -10,7 +10,7 @@ import { formSchema } from '../../services/valid/loginSchema';
 
 
 const Logando = () => {
-    const {onSubmitFunctionLogin, oiUser, Loading} = useContext(UserContext)
+    const {onSubmitFunctionLogin, Loading} = useContext(UserContext)
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(formSchema),

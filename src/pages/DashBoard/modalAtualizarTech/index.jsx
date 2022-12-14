@@ -10,7 +10,7 @@ import { TechContext } from '../../../contexts/TechContext';
 
 export const ModalAtualizarTech = ({id}) => {
     
-    const {oiTechs, setuserLogged, userLogged, settechs, techs, atual, setAtual, nomeTech, setNomeTech, setstatus, status, setCurrentModal, currentModal, setCurrentModalAtualizar, currentModalAtualizar, deleteTech, onSubmitFunctionUpDataTech} = useContext(TechContext)
+    const {setuserLogged, userLogged, settechs, techs, atual, setAtual, nomeTech, setNomeTech, setstatus, status, setCurrentModal, currentModal, setCurrentModalAtualizar, currentModalAtualizar, deleteTech, onSubmitFunctionUpDataTech} = useContext(TechContext);
     
 
     const { register, handleSubmit, formState: { errors } } = useForm({

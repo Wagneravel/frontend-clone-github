@@ -1,8 +1,9 @@
-import { createContext } from "react"; 
+import { createContext, useEffect } from 'react'; 
 import { api } from '../api/api';
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
+import { TechContext } from "./TechContext";
 
 
 
@@ -13,13 +14,12 @@ export const UserProvider = ({children}) => {
 
     const [User, setUser] = useState(null)
     const [Loading, setLoading] = useState(false);
+    
 
-    function oiUser(xxx){
-        console.log(`oi User ${xxx}`)
+    const tokenLS = localStorage.getItem('tokenUser');
 
-        
-    }
-    const navegate = useNavigate() ; 
+    
+    const navegate = useNavigate(); 
     const onSubmitFunctionLogin = (data) => {
         
 
@@ -73,9 +73,10 @@ export const UserProvider = ({children}) => {
 
     }; 
 
+
     return(
 
-        <UserContext.Provider value={{oiUser, onSubmitFunctionLogin, Loading, setLoading, User, setUser, onSubmitFunctionRegister}}>
+        <UserContext.Provider value={{onSubmitFunctionLogin, Loading, setLoading, User, setUser, onSubmitFunctionRegister}}>
             {children}
         </UserContext.Provider>
 

@@ -4,19 +4,19 @@ import { TechContext } from '../../../contexts/TechContext';
 
 export function ListProduct({ModalAtualizarTech}){
 
-    const {oiTechs, setuserLogged, userLogged, settechs, techs, atual, setAtual, nomeTech, setNomeTech, setstatus, status, setCurrentModal, currentModal, setCurrentModalAtualizar, currentModalAtualizar, deleteTech} = useContext(TechContext)
+    const {setuserLogged, userLogged, settechs, techs, atual, setAtual, nomeTech, setNomeTech, setstatus, status, setCurrentModal, currentModal, setCurrentModalAtualizar, currentModalAtualizar, deleteTech} = useContext(TechContext);
 
     function openModal(){
-        console.log("Abrir modal")
-        setCurrentModal(1)
-    }
+       
+        setCurrentModal(1);
+    };
 
     function openModalAtualizar(e){
-        setCurrentModalAtualizar(2)
+        setCurrentModalAtualizar(2);
         
-        setAtual(e.target.id)
-        setNomeTech(e.target.title)
-    }
+        setAtual(e.target.id);
+        setNomeTech(e.target.title);
+    };
 
     return(
         <div >

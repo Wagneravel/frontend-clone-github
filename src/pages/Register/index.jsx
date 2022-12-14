@@ -13,7 +13,7 @@ import { UserContext } from '../../contexts/UserContext';
 
 const Registrando= ()=> {
 
-    const {onSubmitFunctionRegister, oiUser, Loading} = useContext(UserContext)
+    const {onSubmitFunctionRegister, Loading} = useContext(UserContext)
     
 
     const arrSelect = ['Primeiro módulo (Introdução ao Frontend)', 'Segundo módulo (Frontend Avançado)', 'Terceiro módulo (Introdução ao Backend)', 'Quarto módulo (Backend Avançado)'];

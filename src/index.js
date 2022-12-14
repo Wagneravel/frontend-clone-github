@@ -10,13 +10,13 @@ import { TechProvider } from './contexts/TechContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <UserProvider>
-        <TechProvider>
-          <App />
-        </TechProvider>
-      </UserProvider>
-    </BrowserRouter>
+      <BrowserRouter>
+         <UserProvider>
+            <TechProvider>
+                <App />
+            </TechProvider>
+         </UserProvider>
+     </BrowserRouter>
   </React.StrictMode>
 );
 
