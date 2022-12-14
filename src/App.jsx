@@ -10,14 +10,15 @@ import { DashBoard } from './pages/DashBoard';
 
 
 function App() {
-  const [User, setUser] = useState(null)
+  // const [User, setUser] = useState(null)
 
   return (
     <>
     <Toaster/>
       
         <Routes>
-          <Route path="/" element={ <Logando setUser={setUser} /> } />
+        
+          <Route path="/" element={ <Logando  /> } />
           <Route path="/register" element={ <Registrando />} />
           <Route path="/dashboard" element={ <DashBoard /> } />
           

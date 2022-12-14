@@ -11,52 +11,11 @@ import { formSchema } from '../../services/valid/loginSchema';
 
 const Logando = () => {
     const {onSubmitFunction, oiUser, Loading} = useContext(UserContext)
-    // const [Loading, setLoading] = useState(false);
-
-    // const formSchema = yup.object().shape({
-
-    //     email: yup.string().required('E-mail obrigatório').email('E-mail inválido'),
-    //     password: yup.string().required('Campo obrigatório'),
-        
-    // });
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(formSchema),
     });
 
-    // const navegate = useNavigate() ; 
-    // const onSubmitFunction = (data) => {
-        
-
-    //     api
-    //     .post('/sessions', data)
-    //     .then((response) => {
-            
-    //         setLoading(true);
-    //         setUser(response.data.user);
-    //         localStorage.setItem('tokenUser' ,response.data.token);
-    //         localStorage.setItem('IdUser',response.data.user.id);
-        
-    //         toast.success('login com sucesso');
-    //         setTimeout(()=>{
-    //             navegate('/dashboard');
-    //         },500)
-            
-    //     })
-    //     .catch((err) => {
-            
-    //         toast.error('email ou senha incorreta');
-    //     })
-    //     .finally(
-    //         setTimeout(()=>{
-    //             setLoading(false);
-    //         },800)
-    //     )
-    // };  
-
-
-    // oiUser('testando o context');
-    
 
     return(
 

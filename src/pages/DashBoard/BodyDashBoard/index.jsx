@@ -1,14 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { DivCardLi, DivCardUl, DivHeaderList } from './style';
-import { api } from '../../../api/api';
-import toast from 'react-hot-toast';
+import { TechContext } from '../../../contexts/TechContext';
 
+export function ListProduct({ModalAtualizarTech}){
 
-export function ListProduct({setNomeTech, nomeTech, setAtual, atual, setCurrentModalAtualizar, currentModalAtualizar, userLogged, techs, settechs, ModalAtualizarTech, setstatus, status, setCurrentModal}){
-    const tokenLS = localStorage.getItem("tokenUser")
-    
-    
-
+    const {oiTechs, setuserLogged, userLogged, settechs, techs, atual, setAtual, nomeTech, setNomeTech, setstatus, status, setCurrentModal, currentModal, setCurrentModalAtualizar, currentModalAtualizar, deleteTech} = useContext(TechContext)
 
     function openModal(){
         console.log("Abrir modal")
@@ -22,35 +18,6 @@ export function ListProduct({setNomeTech, nomeTech, setAtual, atual, setCurrentM
         setNomeTech(e.target.title)
     }
 
-    function deleteTech(e){
-        
-        const tech_id = e.target.id
-
-        api
-        .delete(`/users/techs/${tech_id}`, {
-            
-            headers: {
-            'Authorization': `Bearer ${tokenLS}`
-        }})
-        
-        .then((response) => {
-            
-            console.log(response)
-            
-            toast.success("tecno Deletada com sucesso")
-        })
-        .catch((err) => {
-            console.log(err)
-            toast.error("tecno nao Deletada corretamente")
-        })
-
-        const arrayFiltered = techs.filter(
-            (product)=>product.id !== e.target.id
-        )
-        settechs(arrayFiltered)
-    }
-
-    
     return(
         <div >
             <div >
@@ -77,7 +44,7 @@ export function ListProduct({setNomeTech, nomeTech, setAtual, atual, setCurrentM
                     }
                     {
                         currentModalAtualizar && (
-                        <ModalAtualizarTech setNomeTech={setNomeTech} nomeTech={nomeTech} setAtual={setAtual} atual={atual} setCurrentModalAtualizar={setCurrentModalAtualizar} currentModalAtualizar={currentModalAtualizar} settechs={settechs} techs={techs} userLogged={userLogged}  /> 
+                        <ModalAtualizarTech /> 
                         )
                     }
                 </DivCardUl>
@@ -86,4 +53,3 @@ export function ListProduct({setNomeTech, nomeTech, setAtual, atual, setCurrentM
     )
 }
 
-// id={element.id}

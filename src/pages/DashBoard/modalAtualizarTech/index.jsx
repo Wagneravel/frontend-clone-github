@@ -1,59 +1,22 @@
 import * as yup from 'yup';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { api } from '../../../api/api';
 import toast from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { StyleComponentModal, StyleModalBox } from '../modal/style';
+import { formSchema } from '../../../services/valid/upDataTech';
+import { TechContext } from '../../../contexts/TechContext';
 
-export const ModalAtualizarTech = ({setNomeTech, nomeTech, setAtual, atual, setCurrentModalAtualizar, settechs, techs, id, setstatus, status}) => {
+export const ModalAtualizarTech = ({id}) => {
     
-    // console.log(techs)
-    const [Loading, setLoading] = useState(false)
-
-    const formSchema = yup.object().shape({
-
-        status: yup.string().required("Campo obrigatório"),
-        
-    })
+    const {oiTechs, setuserLogged, userLogged, settechs, techs, atual, setAtual, nomeTech, setNomeTech, setstatus, status, setCurrentModal, currentModal, setCurrentModalAtualizar, currentModalAtualizar, deleteTech, onSubmitFunction3, onSubmitFunction4} = useContext(TechContext)
+    
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(formSchema),
     });
-    const tokenLS = localStorage.getItem("tokenUser")
-    
-    const onSubmitFunction = (data) => {
-        
-        console.log(data)
 
-        api
-        .put(`/users/techs/${atual}`, data, {
-            
-            headers: {
-            'Authorization': `Bearer ${tokenLS}`
-        }})
-        
-        .then((response) => {
-            
-            let newTechsList = techs.filter((ele)=> ele.id !== response.data.id)
-            
-            
-            newTechsList.push(response.data)
-
-            
-            settechs(newTechsList)
-
-            console.log(response)
-            
-            toast.success("tecno Atualizada com sucesso")
-            setCurrentModalAtualizar(null)
-        })
-
-        .catch((err) => {
-            console.log(err)
-            toast.error("tecno nao foi atualizada corretamente")
-        })
-    } 
 
     return(
         <StyleComponentModal>
@@ -63,7 +26,7 @@ export const ModalAtualizarTech = ({setNomeTech, nomeTech, setAtual, atual, setC
                     
                     <h5>Atualizar tecnologia</h5>
                     <p>{nomeTech}</p>
-                    <form onSubmit={handleSubmit(onSubmitFunction)}>
+                    <form onSubmit={handleSubmit(onSubmitFunction4)}>
 
                         <select {...register("status")}>
                             <option>Iniciante</option>
