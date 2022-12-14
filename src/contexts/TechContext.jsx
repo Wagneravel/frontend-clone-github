@@ -18,6 +18,7 @@ export const TechProvider = ({children}) => {
     const [Loading, setLoading] = useState(false)
 
     const tokenLS = localStorage.getItem("tokenUser")
+    const tokenID = localStorage.getItem("IdUser")
 
     function deleteTech(e){
         
@@ -48,7 +49,7 @@ export const TechProvider = ({children}) => {
     }
 
 
-    const onSubmitFunction4 = (data) => {
+    const onSubmitFunctionUpDataTech = (data) => {
         
         console.log(data)
 
@@ -82,7 +83,7 @@ export const TechProvider = ({children}) => {
     } 
 
 
-    const onSubmitFunction3 = (data) => {
+    const onSubmitFunctionAddTech = (data) => {
         
         api
         .post("/users/techs", data, {
@@ -116,7 +117,7 @@ export const TechProvider = ({children}) => {
 
 
 
-    const tokenID = localStorage.getItem("IdUser")
+    
     const navegate = useNavigate()  
 
     const verfiToken = () => {
@@ -177,8 +178,8 @@ export const TechProvider = ({children}) => {
                 setCurrentModalAtualizar,
                 currentModalAtualizar,
                 deleteTech,
-                onSubmitFunction3,
-                onSubmitFunction4
+                onSubmitFunctionAddTech,
+                onSubmitFunctionUpDataTech
 
             }}>
             {children}

@@ -13,7 +13,7 @@ import { UserContext } from '../../contexts/UserContext';
 
 const Registrando= ()=> {
 
-    const {onSubmitFunction2, oiUser, Loading} = useContext(UserContext)
+    const {onSubmitFunctionRegister, oiUser, Loading} = useContext(UserContext)
     
 
     const arrSelect = ['Primeiro módulo (Introdução ao Frontend)', 'Segundo módulo (Frontend Avançado)', 'Terceiro módulo (Introdução ao Backend)', 'Quarto módulo (Backend Avançado)'];
@@ -31,7 +31,7 @@ const Registrando= ()=> {
             <h3>Crie sua conta</h3>
             <p>Rapido e grátis, vamos nessa</p>
             
-            <form className='form' onSubmit={handleSubmit(onSubmitFunction2)} >
+            <form className='form' onSubmit={handleSubmit(onSubmitFunctionRegister)} >
                 <p>Nome</p>
                 <input type='text' placeholder='Nome' {...register('name')}  />
                 {errors.name && <p>{errors.name.message}</p>}

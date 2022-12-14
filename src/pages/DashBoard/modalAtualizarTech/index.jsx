@@ -10,7 +10,7 @@ import { TechContext } from '../../../contexts/TechContext';
 
 export const ModalAtualizarTech = ({id}) => {
     
-    const {oiTechs, setuserLogged, userLogged, settechs, techs, atual, setAtual, nomeTech, setNomeTech, setstatus, status, setCurrentModal, currentModal, setCurrentModalAtualizar, currentModalAtualizar, deleteTech, onSubmitFunction3, onSubmitFunction4} = useContext(TechContext)
+    const {oiTechs, setuserLogged, userLogged, settechs, techs, atual, setAtual, nomeTech, setNomeTech, setstatus, status, setCurrentModal, currentModal, setCurrentModalAtualizar, currentModalAtualizar, deleteTech, onSubmitFunctionUpDataTech} = useContext(TechContext)
     
 
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -26,7 +26,7 @@ export const ModalAtualizarTech = ({id}) => {
                     
                     <h5>Atualizar tecnologia</h5>
                     <p>{nomeTech}</p>
-                    <form onSubmit={handleSubmit(onSubmitFunction4)}>
+                    <form onSubmit={handleSubmit(onSubmitFunctionUpDataTech)}>
 
                         <select {...register("status")}>
                             <option>Iniciante</option>

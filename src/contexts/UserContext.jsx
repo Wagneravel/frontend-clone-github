@@ -20,7 +20,7 @@ export const UserProvider = ({children}) => {
         
     }
     const navegate = useNavigate() ; 
-    const onSubmitFunction = (data) => {
+    const onSubmitFunctionLogin = (data) => {
         
 
         api
@@ -49,7 +49,7 @@ export const UserProvider = ({children}) => {
         )
     };  
 
-    const onSubmitFunction2 = (data) => {
+    const onSubmitFunctionRegister = (data) => {
 
         api
         .post('/users', data)
@@ -75,7 +75,7 @@ export const UserProvider = ({children}) => {
 
     return(
 
-        <UserContext.Provider value={{oiUser, onSubmitFunction, Loading, setLoading, User, setUser, onSubmitFunction2}}>
+        <UserContext.Provider value={{oiUser, onSubmitFunctionLogin, Loading, setLoading, User, setUser, onSubmitFunctionRegister}}>
             {children}
         </UserContext.Provider>
 

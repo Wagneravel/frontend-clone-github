@@ -10,7 +10,7 @@ import { formSchema } from '../../services/valid/loginSchema';
 
 
 const Logando = () => {
-    const {onSubmitFunction, oiUser, Loading} = useContext(UserContext)
+    const {onSubmitFunctionLogin, oiUser, Loading} = useContext(UserContext)
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(formSchema),
@@ -22,7 +22,7 @@ const Logando = () => {
         <Container>
             <img alt='Logo' src={Logo} />
             <h3>Login</h3>
-            <form className='form' onSubmit={handleSubmit(onSubmitFunction)} >
+            <form className='form' onSubmit={handleSubmit(onSubmitFunctionLogin)} >
 
                 <p>Email</p>
                 <input name='Email' type='email' placeholder='Insira seu email' {...register('email')} />

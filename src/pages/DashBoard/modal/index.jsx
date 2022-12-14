@@ -11,7 +11,7 @@ import { TechContext } from '../../../contexts/TechContext';
 
 export const ModalShow = () => {
 
-    const {oiTechs, setuserLogged, userLogged, settechs, techs, atual, setAtual, nomeTech, setNomeTech, setstatus, status, setCurrentModal, currentModal, setCurrentModalAtualizar, currentModalAtualizar, deleteTech, onSubmitFunction3} = useContext(TechContext)
+    const {oiTechs, setuserLogged, userLogged, settechs, techs, atual, setAtual, nomeTech, setNomeTech, setstatus, status, setCurrentModal, currentModal, setCurrentModalAtualizar, currentModalAtualizar, deleteTech, onSubmitFunctionAddTech} = useContext(TechContext)
 
 
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -26,7 +26,7 @@ export const ModalShow = () => {
                 <div>
                     
                     <h5>Cadastrar tecnologia</h5>
-                    <form onSubmit={handleSubmit(onSubmitFunction3)}>
+                    <form onSubmit={handleSubmit(onSubmitFunctionAddTech)}>
                         <input name='title' type="title"  placeholder='insira o nome da tecno' {...register("title")}></input>
                         {errors.title && <p>{errors.title.message}</p>}
 
